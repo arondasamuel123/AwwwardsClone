@@ -55,6 +55,8 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
+    def save_review(self):
+        self.save()
     
 
     

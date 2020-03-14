@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Project,Profile
+from .models import Project,Profile,Review
 from django.contrib.auth.models import User
 
 
@@ -77,7 +77,22 @@ class ProfileModelTestCase(TestCase):
         self.profile_two.get_prof_id(self.profile_two.id)
         profiles = Profile.objects.all()
         self.assertTrue(len(profiles) > 0)
-    
+        
+
+class ReviewModelTestCase(TestCase):
+    def setUp(self):
+        self.user_jane = User(username='jane123', email='jane123@gmail.com',password='qwerty@420')
+        self.profile_jane = Profile(profile_photo='/image/png',user=self.user_jane,  bio='this is my bio',phone_number='0791019910')
+        self.project_three = Project(project_title='Design Website', project_description='Website for fashion',project_screenshot='/path/image.png',profile=self.profile_jane)
+        self.review_one = Review(design='1',usability='7',content='6',user=self.user_jane,project=self.project_three)
+        
+    def test_save_review(self):
+        self.user_jane.save()
+        self.profile_jane.save()
+        self.project_three.save()
+        self.review_one.save_review()
+        reviews = Review.objects.all()
+        self.assertTrue(len(reviews) > 0)
         
         
         
