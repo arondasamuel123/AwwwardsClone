@@ -18,6 +18,12 @@ class Project(models.Model):
     
     def save_project(self):
         self.save()
+    @classmethod
+    def search_by_project(cls, search_term):
+        projects = cls.objects.filter(project_title__icontains=search_term)
+        return projects
+    
+        
 
 class Review(models.Model):
     design= models.IntegerField()

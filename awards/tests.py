@@ -20,5 +20,12 @@ class ProjectModelTestCase(TestCase):
         
         projects = Project.objects.all()
         self.assertTrue(len(projects)>0)
+    
+    def test_search_project(self):
+        self.user_one.save()
+        self.profile_one.save()
+        self.project_one.save_project()
         
+        projects = self.project_one.search_by_project('GithubSearch')
+        self.assertTrue(len(projects) > 0)  
 
