@@ -27,7 +27,8 @@ class ProjectModelTestCase(TestCase):
         self.project_one.save_project()
         
         projects = self.project_one.search_by_project('GithubSearch')
-        self.assertTrue(len(projects) > 0)  
+        self.assertTrue(len(projects) > 0)
+
 
 class ProfileModelTestCase(TestCase):
     def setUp(self):
@@ -54,5 +55,14 @@ class ProfileModelTestCase(TestCase):
         self.profile_two.get_prof_id(self.profile_two.id)
         self.profile_two.update_profile('This is an updated bio')
         self.assertTrue(self.profile_two.bio=='This is an updated bio')
+        
+    def test_get_prof_id(self):
+        self.user_john.save()
+        self.profile_two.save_profile()
+        self.profile_two.get_prof_id(self.profile_two.id)
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles) > 0)
+    
+        
         
         
