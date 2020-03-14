@@ -1,5 +1,6 @@
-# Instagram Clone
+# Awwwards Clone
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![codebeat badge](https://codebeat.co/badges/7283d5cd-8963-4679-844b-a5c915ab09e0)](https://codebeat.co/projects/github-com-arondasamuel123-awwwardsclone-master)
 
 ## Description
 This a web application built using Python, Django and Postgresql.The app is a clone  of the Awwwards web app, you can view posted projects that have been posted with the necessary details. As a user you can post project to be rated and reviewed by other users. As a user you can also rate and review other users' projects, you can also search for a specific projects, view your own and other users' projects. As well as view your profile page
