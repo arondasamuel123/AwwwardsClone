@@ -29,3 +29,23 @@ class ProjectModelTestCase(TestCase):
         projects = self.project_one.search_by_project('GithubSearch')
         self.assertTrue(len(projects) > 0)  
 
+class ProfileModelTestCase(TestCase):
+    def setUp(self):
+        self.user_john = User(username='john123',email='john@gmail.com', password='abcdef')
+        self.profile_two = Profile(profile_photo='/path/image.png',user=self.user_john, bio='I am here to get validation.Jokes',phone_number='0712345678')
+        
+        
+    def test_save_profile(self):
+        self.user_john.save()
+        self.profile_two.save_profile()
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles) > 0)
+    
+    def test_delete_profile(self):
+        self.user_john.save()
+        self.profile_two.save_profile()
+        self.profile_two.delete_profile()
+        profiles = Profile.objects.all()
+        self.assertTrue(len(profiles)== 0)
+        
+        

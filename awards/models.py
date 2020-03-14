@@ -8,6 +8,11 @@ class Profile(models.Model):
     bio = models.TextField()
     phone_number = models.IntegerField()
     
+    def save_profile(self):
+        self.save()
+    def delete_profile(self):
+        self.delete()
+    
 class Project(models.Model):
     project_title = models.CharField(max_length=20)
     project_description = models.CharField(max_length=20)
