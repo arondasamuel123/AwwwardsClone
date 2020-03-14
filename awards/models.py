@@ -37,6 +37,11 @@ class Project(models.Model):
     def search_by_project(cls, search_term):
         projects = cls.objects.filter(project_title__icontains=search_term)
         return projects
+    @classmethod
+    def get_proj_id(cls,id):
+        project  = cls.objects.filter(id=id).all()
+        return project
+    
     
         
 

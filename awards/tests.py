@@ -28,6 +28,13 @@ class ProjectModelTestCase(TestCase):
         
         projects = self.project_one.search_by_project('GithubSearch')
         self.assertTrue(len(projects) > 0)
+    def test_get_proj_id(self):
+        self.user_one.save()
+        self.profile_one.save()
+        self.project_one.save()
+        self.project_one.get_proj_id(self.project_one.id)
+        projects = Project.objects.all()
+        self.assertTrue(len(projects)> 0)
 
 
 class ProfileModelTestCase(TestCase):
