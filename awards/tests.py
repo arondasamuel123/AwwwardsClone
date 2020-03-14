@@ -35,6 +35,14 @@ class ProjectModelTestCase(TestCase):
         self.project_one.get_proj_id(self.project_one.id)
         projects = Project.objects.all()
         self.assertTrue(len(projects)> 0)
+        
+    def test_update_project(self):
+        self.user_one.save()
+        self.profile_one.save()
+        self.project_one.save()
+        self.project_one.get_proj_id(self.project_one.id)
+        self.project_one.update_project('GithubSearchAPI')
+        self.assertTrue(self.project_one.project_title=='GithubSearchAPI')
 
 
 class ProfileModelTestCase(TestCase):

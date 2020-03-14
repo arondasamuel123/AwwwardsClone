@@ -42,6 +42,9 @@ class Project(models.Model):
         project  = cls.objects.filter(id=id).all()
         return project
     
+    def update_project(self, project_title):
+        self.project_title = project_title
+        self.save()
     
         
 
