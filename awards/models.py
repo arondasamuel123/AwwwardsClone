@@ -16,6 +16,14 @@ class Project(models.Model):
     project_link = models.URLField()
     date_posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+class Review(models.Model):
+    design= models.IntegerField()
+    usability = models.IntegerField()
+    content = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    
     
 
     
