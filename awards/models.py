@@ -45,7 +45,8 @@ class Project(models.Model):
     def update_project(self, project_title):
         self.project_title = project_title
         self.save()
-    
+    def delete_project(self):
+        self.delete()
         
 
 class Review(models.Model):
