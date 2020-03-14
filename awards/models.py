@@ -9,6 +9,14 @@ class Profile(models.Model):
     phone_number = models.IntegerField()
     email = models.EmailField()
     
+class Project(models.Model):
+    project_title = models.CharField(max_length=20)
+    project_description = models.CharField(max_length=20)
+    project_screenshot = CloudinaryField('project_screenshot')
+    project_link = models.URLField()
+    date_posted = models.DateTimeField(auto_now_add=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    
 
     
     
