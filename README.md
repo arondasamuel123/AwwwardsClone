@@ -11,6 +11,7 @@ Samuel Aronda
 
 
 ## DB diagram
+![Awwwards](https://user-images.githubusercontent.com/31355212/76678162-a696b700-65e6-11ea-979f-7a25e8407fc7.png)
 
 
 
