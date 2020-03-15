@@ -55,8 +55,10 @@ def create_profile(request):
     return render(request, 'auth/profile.html',{"form":form})
         
 def user_profile(request, id):
+    current_user = request.user
     profile = Profile.objects.filter(user_id=id).all()
-    return render(request, 'view_profile.html',{"profile":profile})
+    projects = Project.objects.filter(profile=current_user.profile.id).all()
+    return render(request, 'view_profile.html',{"profile":profile, "projects":projects})
 
 def post_project(request):
     current_user = request.user

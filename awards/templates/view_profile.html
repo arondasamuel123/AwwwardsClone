@@ -17,8 +17,18 @@
         {%endfor%}
         <hr>
     </div>
-    <!-- Modal -->
-    
+    {%for project in projects%}
+    <div class="row">
+        <div class="card mt-4" style="width: 30rem; margin-right: auto;">
+            <img class="card-img-top" src="{{project.project_screenshot.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{project.project_title}}</h5>
+              <p class="card-text">{{project.project_description}}</p>
+              <p class="card-text">Posted by:{{project.profile.user.username}}</p>
+          </div>  
+      </div>
+    </div>
+    {%endfor%}
 </div>
 
 {%endblock%}
