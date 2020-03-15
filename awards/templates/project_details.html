@@ -22,16 +22,16 @@
               <p class="card-text">Usability:{{r.usability}}</p>
               <p class="card-text">Design:{{r.design}}</p>
               <p class="card-text">Content: {{r.content}}</p>
-              <p class="card-text">Posted by:{{project.profile.user.username}}</p>
+              <p class="card-text">Posted by:{{r.user.username}}</p>
           </div>  
       </div>
       {%endfor%}
     </div>
          
-
+    <div class="card mt-5" style="width: 20rem;">  
+      <h3>Overall score:{{total_score}}</h3>
+    </div>
 </div>
 <br>
-<div>  
-    <h3>Overall score:{{total_score}}</h3>
-  </div>
+
 {%endblock%}

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 import cloudinary
 from decouple import config, Csv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -142,3 +143,5 @@ STATIC_URL = '/static/'
 
 
 MEDIA_URL = '/media/'
+
+django_heroku.settings(locals())
