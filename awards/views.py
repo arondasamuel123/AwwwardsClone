@@ -5,7 +5,7 @@ from .models import Profile, Project, Review
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Project
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer,ProfileSerializer
 
 
 
@@ -125,6 +125,12 @@ class ProjectList(APIView):
     def get(self, request, format=None):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+    
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
         return Response(serializers.data)
       
 

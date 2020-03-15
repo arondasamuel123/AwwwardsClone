@@ -12,5 +12,6 @@ urlpatterns = [
     path('rating/<int:id>',views.rate_project, name='rate-project'),
     path('project/<int:id>',views.project_details,name='project-details'),
     path('api/projects/',views.ProjectList.as_view()),
+    path('api/profiles/', views.ProfileList.as_view()),
     path('logout/', views.logout_view,name='logout')
 ]
