@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import SignUpForm,LoginForm, ProfileForm
+from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm
 from django.contrib.auth import login,logout,authenticate
 from .models import Profile
 
@@ -57,6 +57,19 @@ def create_profile(request):
 def user_profile(request, id):
     profile = Profile.objects.filter(user_id=id).all()
     return render(request, 'view_profile.html',{"profile":profile})
+
+def post_project(request):
+    current_user = request.user
+    if request.method=="POST":
+        form = ProjectForm(request.POST,request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.profile = current_user.profile
+            project.save_project()
+            return redirect(home)
+    else:
+        form = ProjectForm()
+    return render(request, 'post_project.html',{"form":form})
 
 
 def logout_view(request):
