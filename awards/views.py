@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm
 from django.contrib.auth import login,logout,authenticate
-from .models import Profile
+from .models import Profile, Project
 
 
 
 def home(request):
-    
-    return render(request, 'home.html')
+    projects = Project.objects.all()
+    return render(request, 'home.html', {"projects":projects})
 
 def signup(request):
     if request.method=='POST':
