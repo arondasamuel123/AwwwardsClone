@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,LoginForm, ProfileForm
 from django.contrib.auth import login,logout,authenticate
+from .models import Profile
 
 
 
@@ -53,6 +54,9 @@ def create_profile(request):
         form = ProfileForm()
     return render(request, 'auth/profile.html',{"form":form})
         
+def user_profile(request, id):
+    profile = Profile.objects.filter(user_id=id).all()
+    return render(request, 'view_profile.html',{"profile":profile})
 
 
 def logout_view(request):
