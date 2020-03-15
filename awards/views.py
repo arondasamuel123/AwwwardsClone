@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect
 from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm, RatingForm
 from django.contrib.auth import login,logout,authenticate
 from .models import Profile, Project, Review
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Project
+from .serializers import ProjectSerializer
 
 
 
@@ -117,7 +121,12 @@ def project_details(request,id):
     total_score = (total_design + total_usability + total_content)/3
     return render(request, 'project_details.html',{"project":project, "ratings":ratings,"total_score":total_score})
         
-    
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+      
 
 
 def logout_view(request):

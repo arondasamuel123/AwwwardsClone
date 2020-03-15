@@ -11,5 +11,6 @@ urlpatterns = [
     path('search/', views.search_project,name='search-project'),
     path('rating/<int:id>',views.rate_project, name='rate-project'),
     path('project/<int:id>',views.project_details,name='project-details'),
+    path('api/projects/',views.ProjectList.as_view()),
     path('logout/', views.logout_view,name='logout')
 ]
