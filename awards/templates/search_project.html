@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{%load bootstrap4 %}
+{%block content %}
+
+<div class="container">
+    <div class="row">
+        {% if projects%}
+        <h2>Found {{ projects|length }} under the project {{message}}</h2>
+      {% else %}
+        <h2> Found 0 users under the project of {{message}}</h2>
+      {% endif %} 
+
+    </div>
+
+    <div class="row">
+      {%for p in projects%}
+          <div class="card mt-4 mx-auto" style="width: 20rem; margin-right: auto;">
+            <img class="card-img-top" src="{{p.project_screenshot.url}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{p.project_title}}</h5>
+              <p class="card-text">{{p.project_description}}</p>
+              <small class="text-muted">{{p.date_posted}}</small>
+            </div>
+          </div>
+      
+      {%endfor%}
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+{%endblock%}

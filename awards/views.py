@@ -71,6 +71,16 @@ def post_project(request):
         form = ProjectForm()
     return render(request, 'post_project.html',{"form":form})
 
+def search_project(request):
+    if 'project'in request.GET and request.GET['project']:
+        search_project = request.GET.get('project')
+        searched_projects = Project.search_by_project(search_project)
+        message = f'{search_project}'
+        return render(request, 'search_project.html',{"projects":searched_projects, "message":message})
+    
+        
+    
+
 
 def logout_view(request):
     logout(request)
