@@ -26,8 +26,8 @@
                   <a href="{{project.project_link}}">{{project.project_link}}</a>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      <a href="/rating/{{project.id}}" type="button" class="btn btn-sm btn-outline-success">Rate</a>
+                      <a href="/project/{{project.id}}" type="button" class="btn btn-sm btn-outline-warning">More...</a>
                     </div>
                     <small class="text-muted">{{project.date_posted}}</small>
                   </div>

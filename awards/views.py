@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm
+from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm, RatingForm
 from django.contrib.auth import login,logout,authenticate
 from .models import Profile, Project
 
@@ -78,6 +78,21 @@ def search_project(request):
         message = f'{search_project}'
         return render(request, 'search_project.html',{"projects":searched_projects, "message":message})
     
+def rate_project(request, id):
+    current_user = request.user
+    project = Project.objects.get(pk=id)
+    if request.method=='POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            rating = form.save(commit=False)
+            rating.user = current_user
+            rating.project = project
+            rating.save_review()
+            return redirect(home)
+        
+    else:
+        form = RatingForm()
+    return render(request, 'rating.html', {"form":form, "project":project})
         
     
 
