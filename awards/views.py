@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import SignUpForm,LoginForm, ProfileForm, ProjectForm, RatingForm
 from django.contrib.auth import login,logout,authenticate
-from .models import Profile, Project
+from .models import Profile, Project, Review
 
 
 
@@ -81,6 +81,7 @@ def search_project(request):
 def rate_project(request, id):
     current_user = request.user
     project = Project.objects.get(pk=id)
+    ratings = Review.objects.filter(project=project.id).all()
     if request.method=='POST':
         form = RatingForm(request.POST)
         if form.is_valid():
@@ -92,7 +93,27 @@ def rate_project(request, id):
         
     else:
         form = RatingForm()
-    return render(request, 'rating.html', {"form":form, "project":project})
+    return render(request, 'rating.html', {"form":form, "project":project, "ratings":ratings})
+
+def project_details(request,id):
+    project = Project.objects.get(pk=id)
+    ratings = Review.objects.filter(project=project.id).all()
+    design = Review.objects.filter(project=project.id).values_list('design',flat=True)
+    usability = Review.objects.filter(project=project.id).values_list('usability',flat=True)
+    content = Review.objects.filter(project=project.id).values_list('content',flat=True)
+    total_design=0
+    total_usability=0
+    total_content = 0
+    for score in design:
+        total_design+=score
+    for score in usability:
+        total_usability+=score
+    for score in content:
+        total_content+=score
+        
+        
+    total_score = (total_design + total_usability + total_content)/3
+    return render(request, 'project_details.html',{"project":project, "ratings":ratings,"total_score":total_score})
         
     
 
